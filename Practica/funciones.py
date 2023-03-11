@@ -17,27 +17,27 @@ def acceder_descargas():
 def clasificar_archivos():
     # Guardamos en una variable la ruta de de la carpeta de descargas
     descargas = acceder_descargas()
-    # Comprovamos si existen las carpetas, si no se crean
-    if not os.path.exists(os.path.join(descargas, 'Documentos')):
-        os.mkdir(os.path.join(descargas, 'Documentos'))
-    if not os.path.exists(os.path.join(descargas, 'Imagenes')):
-        os.mkdir(os.path.join(descargas, 'Imagenes'))
-    if not os.path.exists(os.path.join(descargas, 'Software')):
-        os.mkdir(os.path.join(descargas, 'Software'))
-    if not os.path.exists(os.path.join(descargas, 'Otros')):
-        os.mkdir(os.path.join(descargas, 'Otros'))
-
     # Iteramos sobre el path de descargas.
     for archivo in os.listdir(descargas):
             archivo_path = os.path.join(descargas, archivo) # En cada iteración se crea una ruta
-            # Verificamos la extension del archivo y lo movemos a la carpeta correspondiente
+            # Verificamos la extension del archivo
             if archivo.endswith(doc_types):
-                    shutil.move(archivo_path, os.path.join(descargas, 'Documentos'))
+                # Comprovamos si existen las carpetas, si no se crean
+                if not os.path.exists(os.path.join(descargas, 'Documentos')):
+                    os.mkdir(os.path.join(descargas, 'Documentos'))
+                # Lo movemos a la carpeta correspondiente
+                shutil.move(archivo_path, os.path.join(descargas, 'Documentos'))
             elif archivo.endswith(img_types):
-                    shutil.move(archivo_path, os.path.join(descargas, 'Imagenes'))
+                if not os.path.exists(os.path.join(descargas, 'Imagenes')):
+                    os.mkdir(os.path.join(descargas, 'Imagenes'))
+                shutil.move(archivo_path, os.path.join(descargas, 'Imagenes'))
             elif archivo.endswith(software_types):
+                if not os.path.exists(os.path.join(descargas, 'Software')):
+                    os.mkdir(os.path.join(descargas, 'Software'))
                     shutil.move(archivo_path, os.path.join(descargas, 'Software'))
             else:
-                    shutil.move(archivo_path, os.path.join(descargas, 'Otros'))
+                if not os.path.exists(os.path.join(descargas, 'Otros')):
+                    os.mkdir(os.path.join(descargas, 'Otros'))
+                shutil.move(archivo_path, os.path.join(descargas, 'Otros'))
 
 clasificar_archivos()
