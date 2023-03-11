@@ -1,4 +1,5 @@
 import os
+import shutil
 # Definir tipos de archivos
 doc_types = ('.doc', '.docx', '.txt', '.pdf', '.xls', '.ppt', '.xlsx', '.pptx')
 img_types = ('.jpg', '.jpeg', '.png', '.svg', '.gif', '.tif', '.tiff')
@@ -26,3 +27,15 @@ def clasificar_archivos():
     if not os.path.exists(os.path.join(descargas, 'Otros')):
         os.mkdir(os.path.join(descargas, 'Otros'))
 
+    # Iteramos sobre el path de descargas.
+    for archivo in os.listdir(descargas):
+            archivo_path = os.path.join(descargas, archivo) # En cada iteración se crea una ruta
+            # Verificamos la extension del archivo y lo movemos a la carpeta correspondiente
+            if archivo.endswith(doc_types):
+                    shutil.move(archivo_path, os.path.join(descargas, 'Documentos'))
+            elif archivo.endswith(img_types):
+                    shutil.move(archivo_path, os.path.join(descargas, 'Imagenes'))
+            elif archivo.endswith(software_types):
+                    shutil.move(archivo_path, os.path.join(descargas, 'Software'))
+            else:
+                    shutil.move(archivo_path, os.path.join(descargas, 'Otros'))
