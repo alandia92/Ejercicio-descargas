@@ -39,3 +39,5 @@ def clasificar_archivos():
                     shutil.move(archivo_path, os.path.join(descargas, 'Software'))
             else:
                     shutil.move(archivo_path, os.path.join(descargas, 'Otros'))
+
+clasificar_archivos()
