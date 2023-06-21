@@ -1,4 +1,4 @@
-# Ejercicio-descargas
+# Sort files
 ## Ejercicio Bootcamp Data Science
 
 El objetivo es ordenar la típica carpeta de cajón desastre donde se nos acumulan archivos de
